@@ -16,12 +16,23 @@ var customer = new CustomerCreated
 
 var queueUrlResponse = await sqsClient.GetQueueUrlAsync("customers");
 
+// create a new message
 var sendMessageRequest = new SendMessageRequest
 {
     QueueUrl = queueUrlResponse.QueueUrl,
-    MessageBody = JsonSerializer.Serialize(customer)
+    MessageBody = JsonSerializer.Serialize(customer),
+    //This is to make sure the message type is a type of CustomerCreated object
+    MessageAttributes = new Dictionary<string, MessageAttributeValue>
+    {
+        {
+            "MessageType", new MessageAttributeValue
+            {
+                DataType = "String",
+                StringValue = nameof(CustomerCreated)
+            }
+        }
+    }
 };
 
+//send a new message to the queue
 var response = await sqsClient.SendMessageAsync(sendMessageRequest);
-
-//Console.Write(response);
