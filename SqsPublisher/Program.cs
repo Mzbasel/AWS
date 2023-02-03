@@ -34,5 +34,5 @@ var sendMessageRequest = new SendMessageRequest
     }
 };
 
-//send a new message to the queue
+//publish a new message to the queue
 var response = await sqsClient.SendMessageAsync(sendMessageRequest);
