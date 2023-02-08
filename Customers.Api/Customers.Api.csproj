@@ -6,12 +6,25 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
     <ItemGroup>
         <PackageReference Include="FluentValidation.AspNetCore" Version="11.0.1" />
         <PackageReference Include="Dapper" Version="2.0.123" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
         <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.2" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+        <PackageReference Include="AWSSDK.SQS" Version="3.7.100.67" />
+        <PackageReference Include="MySqlConnector" Version="2.2.5" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="AWSSDK.SQS" />
+      <None Remove="Messaging\" />
+      <None Remove="Contracts\Messaged\" />
+      <None Remove="MySqlConnector" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Messaging\" />
+      <Folder Include="Contracts\Messaged\" />
+    </ItemGroup>
 </Project>

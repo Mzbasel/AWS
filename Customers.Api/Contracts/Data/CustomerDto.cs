@@ -2,7 +2,7 @@
 
 public class CustomerDto
 {
-    public Guid Id { get; init; } = default!;
+    public string Id { get; init; } = default!;
 
     public string GitHubUsername { get; init; } = default!;
 

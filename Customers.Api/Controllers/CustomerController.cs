@@ -27,8 +27,8 @@ public class CustomerController : ControllerBase
         return CreatedAtAction("Get", new { customerResponse.Id }, customerResponse);
     }
 
-    [HttpGet("customers/{id:guid}")]
-    public async Task<IActionResult> Get([FromRoute] Guid id)
+    [HttpGet("customers/{id}")]
+    public async Task<IActionResult> Get([FromRoute] string id)
     {
         var customer = await _customerService.GetAsync(id);
 
@@ -49,7 +49,7 @@ public class CustomerController : ControllerBase
         return Ok(customersResponse);
     }
     
-    [HttpPut("customers/{id:guid}")]
+    [HttpPut("customers/{id}")]
     public async Task<IActionResult> Update(
         [FromMultiSource] UpdateCustomerRequest request)
     {
@@ -67,8 +67,8 @@ public class CustomerController : ControllerBase
         return Ok(customerResponse);
     }
     
-    [HttpDelete("customers/{id:guid}")]
-    public async Task<IActionResult> Delete([FromRoute] Guid id)
+    [HttpDelete("customers/{id}")]
+    public async Task<IActionResult> Delete([FromRoute] string id)
     {
         var deleted = await _customerService.DeleteAsync(id);
         if (!deleted)

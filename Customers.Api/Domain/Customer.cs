@@ -2,7 +2,7 @@
 
 public class Customer
 {
-    public required Guid Id { get; init; } = Guid.NewGuid();
+    public required string Id { get; init; } = Guid.NewGuid().ToString();
 
     public required string GitHubUsername { get; init; }
 

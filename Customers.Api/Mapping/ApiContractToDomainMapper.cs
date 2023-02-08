@@ -9,7 +9,7 @@ public static class ApiContractToDomainMapper
     {
         return new Customer
         {
-            Id = Guid.NewGuid(),
+            Id = Guid.NewGuid().ToString(),
             Email = request.Email,
             GitHubUsername = request.GitHubUsername,
             FullName = request.FullName,

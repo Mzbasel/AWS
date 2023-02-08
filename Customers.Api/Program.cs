@@ -1,10 +1,12 @@
-using Customers.Api.Database;
+using Amazon.SQS;
+using Customers.Api.Messaging;
 using Customers.Api.Repositories;
 using Customers.Api.Services;
 using Customers.Api.Validation;
 using Dapper;
 using FluentValidation.AspNetCore;
 using Microsoft.Net.Http.Headers;
+using MySqlConnector;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
@@ -23,13 +25,11 @@ builder.Services.AddControllers().AddFluentValidation(x =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-SqlMapper.AddTypeHandler(new GuidTypeHandler());
-SqlMapper.RemoveTypeMap(typeof(Guid));
-SqlMapper.RemoveTypeMap(typeof(Guid?));
-
-builder.Services.AddSingleton<IDbConnectionFactory>(_ =>
-    new SqliteConnectionFactory(config.GetValue<string>("Database:ConnectionString")!));
-builder.Services.AddSingleton<DatabaseInitializer>();
+builder.Services.AddTransient<MySqlConnection>(_ =>
+    new MySqlConnection(builder.Configuration.GetConnectionString("Database:ConnectionString")));
+builder.Services.Configure<QueueSettings>(builder.Configuration.GetSection(QueueSettings.Key));
+builder.Services.AddSingleton<IAmazonSQS, AmazonSQSClient>();
+builder.Services.AddSingleton<ISQSMessenger, SQSMessenger>();
 builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
 builder.Services.AddSingleton<ICustomerService, CustomerService>();
 builder.Services.AddSingleton<IGitHubService, GitHubService>();
@@ -55,8 +55,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseMiddleware<ValidationExceptionMiddleware>();
 app.MapControllers();
-
-var databaseInitializer = app.Services.GetRequiredService<DatabaseInitializer>();
-await databaseInitializer.InitializeAsync();
 
 app.Run();
