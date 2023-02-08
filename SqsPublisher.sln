@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqsConsumer", "SqsConsumer\SqsConsumer.csproj", "{C5D33232-CFC9-48E1-952D-2D9AAF966BBB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customers.Api", "..\..\..\Downloads\aws-fundamentals-final-master\3.Sqs\Customers.Api\Customers.Api.csproj", "{879F72EB-D7F6-4E8D-98CE-070F82493C90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customers.Consumers", "Customers.Consumers\Customers.Consumers.csproj", "{A13580FF-BA60-40BD-88F9-0462858CF9B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +30,14 @@ Global
 		{C5D33232-CFC9-48E1-952D-2D9AAF966BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5D33232-CFC9-48E1-952D-2D9AAF966BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5D33232-CFC9-48E1-952D-2D9AAF966BBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{879F72EB-D7F6-4E8D-98CE-070F82493C90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{879F72EB-D7F6-4E8D-98CE-070F82493C90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{879F72EB-D7F6-4E8D-98CE-070F82493C90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{879F72EB-D7F6-4E8D-98CE-070F82493C90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A13580FF-BA60-40BD-88F9-0462858CF9B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A13580FF-BA60-40BD-88F9-0462858CF9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A13580FF-BA60-40BD-88F9-0462858CF9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A13580FF-BA60-40BD-88F9-0462858CF9B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
